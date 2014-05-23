@@ -23,5 +23,6 @@
     },
     "autoload": {
         "psr-0": { "demogorgorn\\uikit\\": "" }
-    }
+    },
+    "target-dir": "demogorgorn/uikit"
 }
