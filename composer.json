@@ -1,0 +1,27 @@
+{
+    "name": "demogorgorn/yii2-uikit-x",
+    "description": "The UIkit front-end framework extension for the Yii framework",
+    "keywords": ["yii", "uikit"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/demogorgorn/yii2-uikit-x/issues",
+        "source": "https://github.com/demogorgorn/yii2-uikit-x"
+    },
+    "authors": [
+        {
+            "name": "Oleg Martemjanov",
+            "email": "demogorgorn@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "*",
+        "uikit/uikit": "*"
+    },
+    "conflict": {
+        "artkost/yii2-uikit": "*"
+    },
+    "autoload": {
+        "psr-0": { "demogorgorn\\uikit\\": "" }
+    }
+}
