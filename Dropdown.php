@@ -5,6 +5,8 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
+use demogorgorn\uikit\Icon;
+
 /**
  * Dropdown renders a UIkit dropdown menu component.
  *
@@ -39,7 +41,22 @@ use yii\helpers\Html;
  * Dropdown::end();
  * ```
  *
+ * Dropdown button example:
+ * ```php
+ *   echo Dropdown::widget([
+ *               'tagOptions' => ['class' => 'uk-button-dropdown'],
+ *               'toggleButton' => ['label' => 'Action', 'tag' => 'button'],
+ *               'items' => [
+ *                  ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+ *                  '<li class="uk-nav-divider"></li>',
+ *                  '<li class="uk-nav-header">Dropdown Header</li>',
+ *                  ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+ *             ],
+ *         ]);
+ * ```
+ *
  * @see http://www.getuikit.com/docs/dropdown.html
+ * @author Oleg Martemjanov <demogorgorn@gmail.com>
  * @author Nikolay Kostyurin <nikolay@artkost.ru>
  * @since 2.0
  */
@@ -71,6 +88,10 @@ class Dropdown extends Widget
 
     public $tagOptions = [];
 
+    public $navbar = false;
+
+    public $showCaret = true;
+
 	/**
 	 * Initializes the widget.
 	 * If you override this method, make sure you call the parent implementation first.
@@ -82,14 +103,19 @@ class Dropdown extends Widget
 
         $this->tagOptions['data-uk-dropdown'] = $this->jsonClientOptions();
 
-        if ($this->toggleButton !== null) {
-            Html::addCssClass($this->tagOptions, 'uk-button-dropdown');
+        if ($this->navbar) {
+            Html::addCssClass($this->options, 'uk-dropdown-navbar');
         }
+        else {
+            if ($this->toggleButton !== null) 
+                Html::addCssClass($this->tagOptions, 'uk-button-dropdown');
 
-        if ($this->tag) {
-            echo Html::beginTag($this->tag, $this->tagOptions) . "\n";
-        }
-        echo $this->renderToggleButton() . "\n";
+            if ($this->tag)
+                echo Html::beginTag($this->tag, $this->tagOptions) . "\n";
+            
+            echo $this->renderToggleButton() . "\n";
+        } 
+
         echo Html::beginTag('div', $this->options);
 	}
 
@@ -101,7 +127,7 @@ class Dropdown extends Widget
 		echo $this->renderItems($this->items);
         echo Html::endTag('div');
 
-        if ($this->tag) {
+        if (!$this->navbar && $this->tag) {
             echo Html::endTag($this->tag);
         }
 
@@ -117,9 +143,13 @@ class Dropdown extends Widget
         if ($this->toggleButton !== null) {
             $tag = ArrayHelper::remove($this->toggleButton, 'tag', 'a');
             $label = ArrayHelper::remove($this->toggleButton, 'label', 'Show');
+            
+            if ($this->showCaret) 
+                $label .= ' ' . Icon::widget(['name' => 'caret-down']);
 
             if ($tag === 'button' && !isset($this->toggleButton['type'])) {
                 $this->toggleButton['type'] = 'button';
+                $this->toggleButton['class'] = 'uk-button';
             }
 
             if ($tag === 'a' && !isset($this->toggleButton['href'])) {

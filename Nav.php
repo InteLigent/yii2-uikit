@@ -6,6 +6,7 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use demogorgorn\uikit\Dropdown;
 
 /**
  * Nav renders a nav HTML component.
@@ -33,7 +34,28 @@ use yii\helpers\Url;
  *     ],
  * ]);
  * ```
- *
+ * 
+ * Accordion panel example:
+ * ```php
+ * echo Nav::widget([
+ *   'accordion' => true,
+ *   'showParentIcon' => true,
+ *   'items' => [
+ *       [
+ *           'label' => 'Home',
+ *           'url' => ['site/index'],
+ *       ],
+ *       [
+ *           'label' => 'Dropdown',
+ *           'url' => '#',
+ *           'items' => [
+ *               ['label' => 'Level 1 - Dropdown A', 'url' => '#'],
+ *               ['label' => 'Level 1 - Dropdown B', 'url' => '#'],
+ *           ],
+ *       ],
+ *   ],
+ * ]);
+ * ```
  * Note: Multilevel dropdowns beyond Level 1 are not supported.
  *
  * @see http://www.getuikit.com/docs/nav.html
@@ -91,7 +113,7 @@ class Nav extends Widget
     public $accordion = false;
 
     /**
-     * Add icons, indicating parent items.
+     * Add icons, indicating parent items for accordion or navbar.
      * @var bool
      */
     public $showParentIcon = false;
@@ -201,9 +223,26 @@ class Nav extends Widget
 		if ($items !== null) {
             Html::addCssClass($options, 'uk-parent');
 
-			if (is_array($items)) {
-                $items = self::widget(['items' => $items, 'options' => ['class' => 'uk-nav-sub']]);
+            if(is_array($items)) {
+
+	            if ($this->navbar) {
+					
+					$options['data-uk-dropdown'] = $this->jsonClientOptions();
+	                
+	                $items = Dropdown::widget([
+	                	'navbar' => true,
+	                	'showCaret' => $this->showParentIcon,
+	                    'items' => $items,
+	                    'clientOptions' => false,
+
+	                ]);
+	            } 
+	            else {
+	                $items = self::widget(['items' => $items, 'options' => ['class' => 'uk-nav-sub']]);
+				}
+
 			}
+
 		}
 
         $link = $label;
