@@ -16,7 +16,7 @@
     ],
     "require": {
         "yiisoft/yii2": "*",
-        "uikit/uikit": "*"
+        "uikit/uikit": "2.6.*"
     },
     "conflict": {
         "artkost/yii2-uikit": "*"
