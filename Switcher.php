@@ -152,10 +152,7 @@ class Switcher extends Widget
         // Panels options
         Html::addCssClass($this->options, 'uk-switcher');
 
-        // Nav options
-        $this->navOptions = array_merge([
-                'data-uk-switcher' => "{connect:'#{$this->options['id']}'}",
-            ], $this->navOptions);
+        $this->navOptions['data-uk-switcher'] = \yii\helpers\Json::encode(['connect' => '#' . $this->options['id'] ]);
     }
 
 }
