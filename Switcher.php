@@ -1,11 +1,11 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use demogorgorn\uikit\SubNav;
+use intelligent\uikit\SubNav;
 
 /**
  * Switcher renders a Switcher UIKit component, Dynamically transition through different content panes.

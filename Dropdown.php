@@ -1,18 +1,18 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
-use demogorgorn\uikit\Icon;
+use intelligent\uikit\Icon;
 
 /**
  * Dropdown renders a UIkit dropdown menu component.
  *
  * ```php
- * use demogorgorn\uikit\Dropdown;
- * use demogorgorn\uikit\Nav;
+ * use intelligent\uikit\Dropdown;
+ * use intelligent\uikit\Nav;
  *
  * Dropdown::begin([
  *  'tagOptions' => ['class' => 'uk-button-dropdown'],

@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\helpers\Html;
 use yii\base\InvalidConfigException;

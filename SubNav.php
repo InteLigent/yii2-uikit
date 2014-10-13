@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -7,7 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-use demogorgorn\uikit\Nav;
+use intelligent\uikit\Nav;
 
 /**
  * SubNav renders a subnav UIKit component.
@@ -15,7 +15,7 @@ use demogorgorn\uikit\Nav;
  * For example:
  *
  * ```php
- * echo \demogorgorn\uikit\SubNav::widget([
+ * echo \intelligent\uikit\SubNav::widget([
  * 		'showLine' => true,
  *		'items' => [
  *			[

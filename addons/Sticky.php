@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit\addons;
+namespace intelligent\uikit\addons;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -34,7 +34,7 @@ use yii\helpers\Html;
  * @since 2.0
  *
  */
-class Sticky extends \demogorgorn\uikit\Widget
+class Sticky extends \intelligent\uikit\Widget
 {
    /**
      * @var string the body content in the Sticky component. Note that anything between

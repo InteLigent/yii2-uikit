@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit\addons;
+namespace intelligent\uikit\addons;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -33,7 +33,7 @@ use yii\helpers\Html;
  * @author Oleg Martemjanov <demogorgorn@gmail.com>
  * @since 2.0
  */
-class Dotnav extends \demogorgorn\uikit\Widget
+class Dotnav extends \intelligent\uikit\Widget
 {
     /**
      * @var array list of items in the dotnav widget. Each array element represents a single

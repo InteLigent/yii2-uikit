@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\web\AssetBundle;
 
@@ -17,6 +17,6 @@ class UIkitPluginAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'demogorgorn\uikit\UIkitAlmostFlatAsset',
+        'intelligent\uikit\UIkitAlmostFlatAsset',
     ];
 }

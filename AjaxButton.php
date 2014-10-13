@@ -1,7 +1,7 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
-use demogorgorn\uikit\Button;
+use intelligent\uikit\Button;
 use yii\helpers\Html;
 use yii\helpers\Json;
 

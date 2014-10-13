@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\helpers\Html;
 
@@ -9,7 +9,7 @@ use yii\helpers\Html;
  * For example,
  *
  * ```php
- * use demogorgorn\uikit\Button;
+ * use intelligent\uikit\Button;
  *
  * echo Button::widget([
  *     'label' => 'Action',

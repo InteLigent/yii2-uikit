@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\web\AssetBundle;
 
@@ -17,6 +17,6 @@ class UIkitGradientAsset extends AssetBundle
         'css/uikit.gradient.css',
     ];
     /*public $depends = [
-        'demogorgorn\uikit\UIkitAsset',
+        'intelligent\uikit\UIkitAsset',
     ];*/
 }

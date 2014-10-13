@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -12,7 +12,7 @@ use yii\helpers\Html;
  * and [[end()]] calls within the modal window:
  *
  * ~~~php
- * use demogorgorn\uikit\Modal;
+ * use intelligent\uikit\Modal;
  *
  * Modal::begin([
  *     'toggleButton' => ['label' => 'click me'],

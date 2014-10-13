@@ -1,12 +1,12 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use demogorgorn\uikit\Dropdown;
+use intelligent\uikit\Dropdown;
 
 /**
  * Nav renders a nav HTML component.

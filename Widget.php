@@ -1,11 +1,11 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\helpers\Json;
 
 /**
- * demogorgorn\uikit\Widget is the base class for all UIkit widgets.
+ * intelligent\uikit\Widget is the base class for all UIkit widgets.
  *
  * @author Nikolay Kostyurin <nikolay@artkost.ru>
  * @since 2.0

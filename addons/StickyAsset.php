@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit\addons;
+namespace intelligent\uikit\addons;
 
 use yii\web\AssetBundle;
 
@@ -17,7 +17,7 @@ class StickyAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'demogorgorn\uikit\addons\UIkitAddonsAsset',
-        'demogorgorn\uikit\UIkitPluginAsset',
+        'intelligent\uikit\addons\UIkitAddonsAsset',
+        'intelligent\uikit\UIkitPluginAsset',
     ];
 }

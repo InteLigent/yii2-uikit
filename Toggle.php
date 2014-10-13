@@ -1,11 +1,11 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
-use demogorgorn\uikit\Button;
+use intelligent\uikit\Button;
 
 /**
  * Toggle renders a Toggle UIKit component.

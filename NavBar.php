@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit;
+namespace intelligent\uikit;
 
 use yii\helpers\Html;
 
@@ -11,8 +11,8 @@ use yii\helpers\Html;
  * or [[\yii\widgets\Menu]] to build up such content. For example,
  *
  * ```php
- * use demogorgorn\uikit\NavBar;
- * use demogorgorn\uikit\Nav;
+ * use intelligent\uikit\NavBar;
+ * use intelligent\uikit\Nav;
  *
  * NavBar::begin();
  * echo Nav::widget([

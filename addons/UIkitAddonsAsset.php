@@ -1,5 +1,5 @@
 <?php
-namespace demogorgorn\uikit\addons;
+namespace intelligent\uikit\addons;
 
 use yii\web\AssetBundle;
 

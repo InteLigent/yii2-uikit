@@ -7,7 +7,7 @@ in Yii applications extremely easy. For example, the following
 single line of code in a view file would render a Progress plugin:
 
 ```php
-<?= demogorgorn\uikit\Progress::widget(['percent' => 60, 'label' => 'test']) ?>
+<?= intelligent\uikit\Progress::widget(['percent' => 60, 'label' => 'test']) ?>
 ```
 
 
@@ -19,14 +19,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require demogorgorn/yii2-uikit "*"
+php composer.phar require intelligent/yii2-uikit "*"
 ```
 
 or add
 
 ```
-"demogorgorn/yii2-uikit": "*"
+"intelligent/yii2-uikit": "*"
 ```
 
 to the require section of your `composer.json` file.
-
