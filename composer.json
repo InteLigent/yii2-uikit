@@ -1,12 +1,12 @@
 {
-    "name": "InteLigent/yii2-uikit-x",
+    "name": "InteLigent/yii2-uikit",
     "description": "The UIkit front-end framework extension for the Yii framework",
     "keywords": ["yii", "uikit"],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/InteLigent/yii2-uikit-x/issues",
-        "source": "https://github.com/InteLigent/yii2-uikit-x"
+        "issues": "https://github.com/InteLigent/yii2-uikit/issues",
+        "source": "https://github.com/InteLigent/yii2-uikit"
     },
     "authors": [
         {
