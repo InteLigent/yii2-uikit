@@ -23,6 +23,6 @@
         "demogorgorn/yii2-uikit-x" : "*"
     },
     "autoload": {
-        "psr-0": { "intelligent\\uikit\\": "" }
+        "psr-4": { "intelligent\\uikit\\": "" }
     }
 }
