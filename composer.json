@@ -1,5 +1,5 @@
 {
-    "name": "InteLigent/yii2-uikit",
+    "name": "intelligent/yii2-uikit",
     "description": "The UIkit front-end framework extension for the Yii framework",
     "keywords": ["yii", "uikit"],
     "type": "yii2-extension",
