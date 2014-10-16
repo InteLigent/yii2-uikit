@@ -17,6 +17,6 @@ class UIkitPluginAsset extends AssetBundle
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'intelligent\uikit\UIkitAlmostFlatAsset',
+        #'intelligent\uikit\UIkitAlmostFlatAsset',
     ];
 }
