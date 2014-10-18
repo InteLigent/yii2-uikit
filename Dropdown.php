@@ -170,12 +170,18 @@ class Dropdown extends Widget
      */
     protected function renderItems($items)
     {
-        if ($this->tag) {
+        if ($this->tag && !$this->navbar) {
             Html::addCssClass($this->itemsOptions, 'uk-nav-dropdown');
         }
 
         if (is_array($items)) {
-            return Nav::widget(['options' => $this->itemsOptions, 'items' => $items]);
+            $options = ['options' => $this->itemsOptions, 'items' => $items];
+
+            if ($this->navbar) {
+                $options['encodeLabels'] = false;
+            }
+
+            return Nav::widget($options);
         }
 
         return $items;

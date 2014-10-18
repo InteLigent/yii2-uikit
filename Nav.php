@@ -115,6 +115,12 @@ class Nav extends Widget
     public $accordion = false;
 
     /**
+     * Enables flip navigation when navbar had been enable
+     * @var bool
+     */
+    public $flip = false;
+
+    /**
      * Add icons, indicating parent items for accordion or navbar.
      * @var bool
      */
@@ -161,7 +167,7 @@ class Nav extends Widget
             $this->options['data-uk-nav'] = $this->jsonClientOptions();
         }
 
-        if (!$this->navbar && $this->showParentIcon) {
+        if ($this->navbar && $this->showParentIcon) {
             Html::addCssClass($this->options, 'uk-nav-parent-icon');
         }
     }
@@ -190,6 +196,14 @@ class Nav extends Widget
             $items[] = $this->renderItem($item);
         }
 
+        if ($this->navbar && $this->flip) {
+            return Html::tag(
+                'div',
+                Html::tag('ul', implode("\n", $items), $this->options),
+                ['class' => 'uk-navbar-flip']
+            );
+        }
+
         return Html::tag('ul', implode("\n", $items), $this->options);
     }
 
@@ -213,20 +227,20 @@ class Nav extends Widget
             throw new InvalidConfigException("The 'label' option is required.");
         }
 
+        $items       = ArrayHelper::getValue($item, 'items');
+        $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
+
         if ($this->navbar && empty($item['url'])) {
-
             $label = $item['label'];
-            if ($this->showParentIcon)
-                $label .= ' ' . Icon::widget(['name' => 'caret-down']);
+            #if ($this->showParentIcon && !empty($items))
+            #    $label .= ' ' . Icon::widget(['name' => 'caret-down']);
 
-            $item['label'] = Html::a($label);
+            $item['label'] = Html::a($label, null, $linkOptions);
         }
 
-        $label = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];
+        $label   = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];
         $options = ArrayHelper::getValue($item, 'options', []);
-        $items = ArrayHelper::getValue($item, 'items');
-        $url = ArrayHelper::getValue($item, 'url', false);
-        $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
+        $url     = ArrayHelper::getValue($item, 'url', false);
 
         if (isset($item['active'])) {
             $active = ArrayHelper::remove($item, 'active', false);
@@ -247,12 +261,14 @@ class Nav extends Widget
 
                     $options['data-uk-dropdown'] = $this->jsonClientOptions();
 
-                    $items = Dropdown::widget([
-                        'navbar' => true,
-                        #'showCaret' => $this->showParentIcon,
-                        'items' => $items,
-                        'clientOptions' => false,
+                    $itemsOptions   = ArrayHelper::getValue($item, 'itemsOptions');
 
+                    $items = Dropdown::widget([
+                        'navbar'        => true,
+                        #'showCaret'     => $this->showParentIcon,
+                        'items'         => $items,
+                        'itemsOptions'  => empty($itemsOptions) ? [] : $itemsOptions,
+                        'clientOptions' => false
                     ]);
                 }
                 else {
