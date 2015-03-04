@@ -13,10 +13,10 @@ class UIkitPluginAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/uikit/uikit/dist';
     public $js = [
-        'js/uikit.js',
+        'js/uikit.js'
     ];
+
     public $depends = [
-        'yii\web\JqueryAsset',
-        #'intelligent\uikit\UIkitAlmostFlatAsset',
+        'yii\web\JqueryAsset'
     ];
 }

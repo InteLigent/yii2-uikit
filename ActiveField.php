@@ -11,6 +11,10 @@ use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
 
 /**
+ *  TODO: Почистить от ненужного кода пришедшего от \yii\bootstrap\ActiveField.
+ */
+
+/**
  * A Bootstrap 3 enhanced version of [[\yii\widgets\ActiveField]].
  *
  * This class adds some useful features to [[\yii\widgets\ActiveField|ActiveField]] to render all
@@ -92,6 +96,17 @@ use yii\helpers\ArrayHelper;
 class ActiveField extends \yii\widgets\ActiveField
 {
     /**
+     * @var array the default options for the help tags. The parameter passed to [[help()]] will be
+     * merged with this property when rendering the help tag.
+     * The following special options are recognized:
+     *
+     * - tag: the tag name of the container element. Defaults to "i".
+     *
+     * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+     */
+    public $helpOptions = ['class' => 'uk-icon-question-circle uk-text-muted', 'data-uk-tooltip' => ''];
+
+    /**
      * @var bool whether to render [[checkboxList()]] and [[radioList()]] inline.
      */
     public $inline = false;
@@ -155,8 +170,11 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public function __construct($config = [])
     {
+        /*
         $layoutConfig = $this->createLayoutConfig($config);
         $config = ArrayHelper::merge($layoutConfig, $config);
+        */
+
         return parent::__construct($config);
     }
 
@@ -166,17 +184,19 @@ class ActiveField extends \yii\widgets\ActiveField
     public function render($content = null)
     {
         if ($content === null) {
+            Html::addCssClass($this->options, 'uk-form-row');
+
             if (!isset($this->parts['{beginWrapper}'])) {
                 $options = $this->wrapperOptions;
-                $tag = ArrayHelper::remove($options, 'tag', 'div');
+                $tag     = ArrayHelper::remove($options, 'tag', 'div');
                 $this->parts['{beginWrapper}'] = Html::beginTag($tag, $options);
                 $this->parts['{endWrapper}'] = Html::endTag($tag);
             }
             if ($this->enableLabel === false) {
-                $this->parts['{label}'] = '';
+                $this->parts['{label}']      = '';
                 $this->parts['{beginLabel}'] = '';
                 $this->parts['{labelTitle}'] = '';
-                $this->parts['{endLabel}'] = '';
+                $this->parts['{endLabel}']   = '';
             } elseif (!isset($this->parts['{beginLabel}'])) {
                 $this->renderLabelParts();
             }
@@ -197,6 +217,7 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public function checkbox($options = [], $enclosedByLabel = true)
     {
+        /*
         if ($enclosedByLabel) {
             if (!isset($options['template'])) {
                 $this->template = $this->form->layout === 'horizontal' ?
@@ -210,6 +231,7 @@ class ActiveField extends \yii\widgets\ActiveField
             }
             $this->labelOptions['class'] = null;
         }
+        */
 
         return parent::checkbox($options, false);
     }
@@ -301,6 +323,18 @@ class ActiveField extends \yii\widgets\ActiveField
         } else {
             $this->enableLabel = true;
             $this->renderLabelParts($label, $options);
+
+            if (isset($this->parts['{help}'])) {
+                if ($label !== null) {
+                    $options['label'] = $label;
+                }
+                else {
+                    $attribute        = Html::getAttributeName($this->attribute);
+                    $options['label'] = Html::encode($this->model->getAttributeLabel($attribute));
+                }
+
+                $options['label'] .=  ' ' . $this->parts['{help}'];
+            }
             parent::label($label, $options);
         }
         return $this;
@@ -354,7 +388,7 @@ class ActiveField extends \yii\widgets\ActiveField
             }
             $config['horizontalCssClasses'] = $cssClasses;
             $config['wrapperOptions'] = ['class' => $cssClasses['wrapper']];
-            //$config['labelOptions'] = ['class' => 'control-label ' . $cssClasses['label']];
+            $config['labelOptions'] = ['class' => 'control-label ' . $cssClasses['label']];
             $config['labelOptions'] = ['class' => 'uk-form-label ' . $cssClasses['label']];
             $config['errorOptions'] = ['class' => 'help-block help-block-error ' . $cssClasses['error']];
             $config['hintOptions'] = ['class' => 'help-block ' . $cssClasses['hint']];
@@ -382,8 +416,43 @@ class ActiveField extends \yii\widgets\ActiveField
                 $label = Html::encode($this->model->getAttributeLabel($attribute));
             }
         }
+
         $this->parts['{beginLabel}'] = Html::beginTag('label', $options);
         $this->parts['{endLabel}'] = Html::endTag('label');
         $this->parts['{labelTitle}'] = $label;
+    }
+
+    /**
+     * Renders the help tag.
+     * @param string $content the help content. It will NOT be HTML-encoded.
+     * @param array $options the tag options in terms of name-value pairs. These will be rendered as
+     * the attributes of the help tag. The values will be HTML-encoded using [[Html::encode()]].
+     *
+     * The following options are specially handled:
+     *
+     * - tag: this specifies the tag name. If not set, "i" will be used.
+     *
+     * @return static the field object itself
+     */
+    public function help($content, $options = [])
+    {
+        $options['title'] = $content;
+        $options = array_merge($this->helpOptions, $options);
+        $tag = ArrayHelper::remove($options, 'tag', 'i');
+        $this->parts['{help}'] = Html::tag($tag, '', $options);
+
+        /**
+         *  Regenerate label field.
+         */
+        return self::label();
+    }
+
+    /**
+     * Returns the JS options for the field.
+     * @return array the JS options
+     */
+    public function getClientOptions()
+    {
+        return parent::getClientOptions();
     }
 }

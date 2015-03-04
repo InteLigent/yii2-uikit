@@ -4,17 +4,19 @@ namespace intelligent\uikit\addons;
 use yii\web\AssetBundle;
 
 /**
- * Sticky addon asset
+ * DatePicker component asset
  *
- * @author Oleg Martemjanov <demogorgorn@gmail.com>
+ * @author Vjacheslav Demchenko <word2electronics@gmail.com>
  * @since 2.0
  */
-class StickyAsset extends AssetBundle
+class DatePickerAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/uikit/uikit/dist';
+
     public $js = [
-        'js/components/sticky.js',
+        'js/components/datepicker.js'
     ];
+
     public $depends = [
         'yii\web\JqueryAsset',
         'intelligent\uikit\UIkitPluginAsset',

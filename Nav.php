@@ -88,6 +88,11 @@ class Nav extends Widget
      * @var boolean whether the nav items labels should be HTML-encoded.
      */
     public $encodeLabels = true;
+
+    /**
+     * @var boolean whether to encode spaces in option prompt and option value with `&nbsp;` character.
+     */
+    public $encodeSpaces = false;
     /**
      * @var boolean whether to automatically activate items according to whether their route setting
      * matches the currently requested route.
@@ -220,7 +225,7 @@ class Nav extends Widget
                 $item = Html::a($item);
             }
 
-            return Html::tag('li', $item, []);
+            return $item;
         }
 
         if (!isset($item['label'])) {
@@ -239,6 +244,8 @@ class Nav extends Widget
         }
 
         $label   = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];
+        if ($this->encodeSpaces)
+            $label  = str_replace(' ', '&nbsp;', $label);
         $options = ArrayHelper::getValue($item, 'options', []);
         $url     = ArrayHelper::getValue($item, 'url', false);
 

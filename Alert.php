@@ -113,7 +113,7 @@ class Alert extends Widget
         if ($this->closeButton !== null) {
             $tag = ArrayHelper::remove($this->closeButton, 'tag', 'a');
             $label = ArrayHelper::remove($this->closeButton, 'label', '');
-            
+
             if ($tag === 'button' && !isset($this->closeButton['type'])) {
                 $this->closeButton['type'] = 'button';
             }
@@ -142,7 +142,5 @@ class Alert extends Widget
               'class' => 'uk-alert-close uk-close',
             ], $this->closeButton);
         }
-
-
     }
 }

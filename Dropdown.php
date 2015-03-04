@@ -141,11 +141,22 @@ class Dropdown extends Widget
     protected function renderToggleButton()
     {
         if ($this->toggleButton !== null) {
-            $tag = ArrayHelper::remove($this->toggleButton, 'tag', 'a');
-            $label = ArrayHelper::remove($this->toggleButton, 'label', 'Show');
+            $tag        = ArrayHelper::remove($this->toggleButton, 'tag', 'a');
+            $label      = ArrayHelper::remove($this->toggleButton, 'label', 'Show');
+            $alignCaret = ArrayHelper::remove($this->toggleButton, 'alignCaret');
 
-            if ($this->showCaret)
-                $label .= ' ' . Icon::widget(['name' => 'caret-down']);
+            if ($this->showCaret) {
+                if ($alignCaret == 'right') {
+                    $label =
+                        Html::tag('div', $label, ['class' => 'uk-float-left'])
+                        .
+                        Html::tag('div', Icon::widget(['name' => 'caret-down']), ['class' => 'uk-float-right']);
+
+                    Html::addCssClass($this->toggleButton, 'uk-clearfix');
+                }
+                else
+                    $label .= ' ' . Icon::widget(['name' => 'caret-down']);
+            }
 
             if ($tag === 'button' && !isset($this->toggleButton['type'])) {
                 $this->toggleButton['type'] = 'button';
@@ -175,7 +186,16 @@ class Dropdown extends Widget
         }
 
         if (is_array($items)) {
-            $options = ['options' => $this->itemsOptions, 'items' => $items];
+            $encodeLabels = ArrayHelper::remove($this->itemsOptions, 'encodeLabels');
+
+            $options = [
+                'encodeSpaces' => ArrayHelper::remove($this->itemsOptions, 'encodeSpaces', false),
+                'options'      => $this->itemsOptions,
+                'items'        => $items
+            ];
+
+            if (!is_null($encodeLabels))
+                $options['encodeLabels'] = $encodeLabels;
 
             if ($this->navbar) {
                 $options['encodeLabels'] = false;
