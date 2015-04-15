@@ -189,9 +189,10 @@ class Dropdown extends Widget
             $encodeLabels = ArrayHelper::remove($this->itemsOptions, 'encodeLabels');
 
             $options = [
-                'encodeSpaces' => ArrayHelper::remove($this->itemsOptions, 'encodeSpaces', false),
-                'options'      => $this->itemsOptions,
-                'items'        => $items
+                'encodeSpaces'  => ArrayHelper::remove($this->itemsOptions, 'encodeSpaces', false),
+                'activateItems' => ArrayHelper::remove($this->itemsOptions, 'activateItems', true),
+                'options'       => $this->itemsOptions,
+                'items'         => $items
             ];
 
             if (!is_null($encodeLabels))

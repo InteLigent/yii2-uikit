@@ -251,11 +251,11 @@ class Nav extends Widget
 
         if (isset($item['active'])) {
             $active = ArrayHelper::remove($item, 'active', false);
-        } else {
+        } else if ($this->activateItems) {
             $active = $this->isItemActive($item);
         }
 
-        if ($active) {
+        if (!empty($active)) {
             Html::addCssClass($options, 'uk-active');
         }
 
