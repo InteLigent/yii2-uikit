@@ -104,7 +104,7 @@ class ActiveField extends \yii\widgets\ActiveField
      *
      * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
      */
-    public $helpOptions = ['class' => 'uk-icon-question-circle uk-text-muted', 'data-uk-tooltip' => ''];
+    public $helpOptions = ['class' => 'uk-icon-question-circle uk-text-muted', 'data' => ['uk-tooltip' => ["cls" => 'help', "offset" => 10]]];
 
     /**
      * @var bool whether to render [[checkboxList()]] and [[radioList()]] inline.
@@ -333,6 +333,7 @@ class ActiveField extends \yii\widgets\ActiveField
                     $options['label'] = Html::encode($this->model->getAttributeLabel($attribute));
                 }
 
+                $label = null;
                 $options['label'] .=  ' ' . $this->parts['{help}'];
             }
             parent::label($label, $options);
@@ -436,15 +437,25 @@ class ActiveField extends \yii\widgets\ActiveField
      */
     public function help($content, $options = [])
     {
-        $options['title'] = $content;
-        $options = array_merge($this->helpOptions, $options);
+        if ($content === null) {
+            $this->helpOptions['data']['uk-tooltip']['selector'] = '#tooltip_' . Html::getInputId($this->model, $this->attribute);
+        }
+        else
+            $options['title'] = $content;
+
+        $options = array_merge_recursive($this->helpOptions, $options);
         $tag = ArrayHelper::remove($options, 'tag', 'i');
         $this->parts['{help}'] = Html::tag($tag, '', $options);
 
         /**
          *  Regenerate label field.
          */
-        return self::label();
+        return self::label(ArrayHelper::getValue($this->parts, '{labelTitle}'));
+    }
+
+    public function help_content_id($options = [])
+    {
+        return $this->help(null, $options);
     }
 
     /**
