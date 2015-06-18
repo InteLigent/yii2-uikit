@@ -25,12 +25,17 @@ use yii\helpers\Html;
  * ```
  *
  * @see http://www.getuikit.com/docs/navbar.html
- * @author Oleg Martemjanov <demogorgorn@gmail.com> 
+ * @author Oleg Martemjanov <demogorgorn@gmail.com>
  * @author Nikolay Kostyurin <nikolay@artkost.ru>
  * @since 2.0
  */
 class NavBar extends Widget
 {
+    /**
+     * @var bool offcanvas mode
+     */
+    public $offcanvas = false;
+
     /**
      * Initializes the widget.
      */
@@ -44,7 +49,15 @@ class NavBar extends Widget
             $this->options['role'] = 'navigation';
         }
 
+        if ($this->offcanvas) {
+            //Html::addCssClass($this->options, 'uk-hidden-small');
+        }
+
         echo Html::beginTag('nav', $this->options);
+
+        if ($this->offcanvas) {
+            echo Html::a('',"#offcanvas-1", ['class' => ['uk-navbar-toggle uk-visible-small'], 'data-uk-offcanvas' => ""]);
+        }
     }
 
     /**
